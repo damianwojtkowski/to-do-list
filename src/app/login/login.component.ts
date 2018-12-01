@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../data.service";
-import { Observable } from "rxjs/index";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,20 @@ import { Observable } from "rxjs/index";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private data: DataService) { }
+  public username: string;
+  public password: string;
+  public error: string;
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-
-  getTest() {
-    this.data.getTest().subscribe(
-      data => console.log(data)
-    );
+  public submit() {
+    this.auth.login(this.username, this.password)
+      .pipe(first())
+      .subscribe(
+        result => this.router.navigate(['todo']),
+        err => this.error = 'Could not authenticate'
+      );
   }
-
 }

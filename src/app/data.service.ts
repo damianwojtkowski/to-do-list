@@ -8,8 +8,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getTest() {
-    console.log('test2');
-    return this.http.get('/api/getTest');
+  getTodos() {
+    return this.http.get('/api/todos');
   }
 }
