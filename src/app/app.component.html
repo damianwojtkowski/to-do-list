@@ -1,7 +1,6 @@
 <div>
+  <strong class="app-name">TO DO APP</strong>
   <nav class="nav nav-pills">
-    <a class="nav-link" routerLink="todo" routerLinkActive="active" *ngIf="auth.loggedIn">Todo List</a>
-    <a class="nav-link" routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Login</a>
     <a class="nav-link" (click)="logout()" href="#" *ngIf="auth.loggedIn">Logout</a>
   </nav>
   <router-outlet></router-outlet>

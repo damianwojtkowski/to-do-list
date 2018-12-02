@@ -1,10 +1,31 @@
+.todo .single-todo {
+  position: relative;
+}
+.todo .done-todo {
+  position: absolute;
+  top: 3px;
+  background: green;
+  color: #fff;
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  margin-left: 5px;
+}
+.todo .remove-todo {
+  position: absolute;
+  top: 3px;
+  background: red;
+  color: #fff;
+  border-bottom-right-radius: 7px;
+  border-top-right-radius: 7px;
+  margin-left: 52px;
+}
+.todo .done-todo:hover,
+.todo .remove-todo:hover {
+  cursor: pointer;
+}
 ul {
   list-style: none;
 }
 li {
   font-size: 1.5rem;
-}
-input {
-  transform: scale(2);
-  margin-right: 20px;
 }

@@ -1,0 +1,23 @@
+.login-form .username-group,
+.login-form .password-group {
+  padding: 10px 0;
+  width: 300px;
+}
+.login-form .username-group .username-input {
+  margin-left: 10px;
+  width: 221px;
+  border-radius: 7px;
+}
+.login-form .password-group .password-input {
+  margin-left: 14px;
+  width: 220px;
+  border-radius: 7px;
+}
+.login-form .login-button {
+  width: 300px;
+  background-color: darkorange;
+  border-radius: 7px;
+}
+.login-form .login-button:hover {
+  cursor: pointer;
+}

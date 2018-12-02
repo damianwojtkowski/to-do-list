@@ -18,7 +18,6 @@ var USERS = [
 ];
 
 function getTodos(userID) {
-  console.log(userID);
   return TODOS.filter(function (todo) {
     return userID === todo.user_id;
   });
