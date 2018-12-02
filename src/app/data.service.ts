@@ -16,4 +16,8 @@ export class DataService {
   checkTodoItem(todo: Todo) {
     return this.http.put<Todo[]>('/api/checkTodo', todo);
   }
+
+  removeTodoItem(todo: Todo) {
+    return this.http.delete('/api/deleteTodo/' + todo.id);
+  }
 }

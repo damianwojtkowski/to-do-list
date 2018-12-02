@@ -23,6 +23,18 @@ function getTodos(userID) {
   });
 }
 
+function getTodoIndex(id) {
+  var formattedId = +id;
+  var index = -1;
+  var isTodo = todos.some(function (todo, i) {
+    if (todo.id === formattedId) {
+      index = i;
+      return true;
+    }
+  });
+  return index;
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressJwt({ secret: 'to-do-super-shared-secret'}).unless({path: ['/auth']} ));
@@ -53,17 +65,22 @@ app.get('/todo', function (req, res) {
 
 app.put('/checkTodo', function (req, res) {
   var body = req.body;
-  var index = -1;
-  var isTodo = todos.some(function (todo, i) {
-    if (todo.id === body.id) {
-      index = i;
-      return true;
-    }
-  });
-  if (isTodo) {
+  var index = getTodoIndex(body.id);
+  if (index > -1) {
     todos[index].completed = true;
   }
   res.send(getTodos(user.id));
+});
+
+app.delete('/deleteTodo/:id', function (req, res) {
+  var deletedId = req.params.id;
+  var index = getTodoIndex(deletedId);
+
+  if (index > -1) {
+    todos.splice(index, 1);
+  }
+  res.send(getTodos(user.id));
+
 });
 
 app.listen(9876, function () {

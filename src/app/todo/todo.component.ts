@@ -23,4 +23,10 @@ export class TodoComponent implements OnInit {
       (data: Todo[]) => this.todos = data
     );
   }
+
+  remove(todo) {
+    this.todo.removeTodoItem(todo).subscribe(
+      (data: Todo[]) => this.todos = data
+    )
+  }
 }
