@@ -9,7 +9,11 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getTodos() {
-    return this.http.get<Todo[]>('/api/todos');
+  getTodo() {
+    return this.http.get<Todo[]>('/api/todo');
+  }
+
+  checkTodoItem(todo: Todo) {
+    return this.http.put<Todo[]>('/api/checkTodo', todo);
   }
 }

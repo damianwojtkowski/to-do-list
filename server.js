@@ -5,7 +5,7 @@ var expressJwt = require('express-jwt');
 
 var app = express();
 var user = {};
-var TODOS = [
+var todos = [
   { 'id': 1, 'user_id': 1, 'name': "Get Milk", 'completed': false },
   { 'id': 2, 'user_id': 1, 'name': "Fetch Kids", 'completed': true },
   { 'id': 3, 'user_id': 2, 'name': "Buy flowers for wife", 'completed': false },
@@ -18,7 +18,7 @@ var USERS = [
 ];
 
 function getTodos(userID) {
-  return TODOS.filter(function (todo) {
+  return todos.filter(function (todo) {
     return userID === todo.user_id;
   });
 }
@@ -46,8 +46,23 @@ app.post('/auth', function (req, res) {
   res.send({ token: token });
 });
 
-app.get('/todos', function (req, res) {
+app.get('/todo', function (req, res) {
   res.type("json");
+  res.send(getTodos(user.id));
+});
+
+app.put('/checkTodo', function (req, res) {
+  var body = req.body;
+  var index = -1;
+  var isTodo = todos.some(function (todo, i) {
+    if (todo.id === body.id) {
+      index = i;
+      return true;
+    }
+  });
+  if (isTodo) {
+    todos[index].completed = true;
+  }
   res.send(getTodos(user.id));
 });
 
